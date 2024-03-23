@@ -21,7 +21,7 @@ export default defineConfig({
   },
   "build": {
     "target": "ES2022",
-	"outDir": "dist"
+    "outDir": "dist"
   },
   "root": "./",
   "publicDir": "public"
