@@ -1,0 +1,12 @@
+/* Header style */
+
+.header {
+  flex: 1;
+
+  @include iPhone_small {
+    margin-top: 1rem;
+  }
+  @include iPhone_large {
+    margin-top: 1.75rem;
+  }
+}

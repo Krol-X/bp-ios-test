@@ -1,0 +1,56 @@
+@import 'fonts/SFProDisplay.css';
+@import '@modules/sass-mediascreen/_mediascreen.scss';
+
+$ms-devices: (
+  iPhone14: (
+    min: 390px,
+    max: 844px,
+    pixel-ratio: 3
+  ),
+  iPhone14plus: (
+    min: 428px,
+    max: 926px,
+    pixel-ratio: 3
+  ),
+  iphone14promax: (
+    min: 430px,
+    max: 932px,
+    pixel-ratio: 3
+  )
+);
+
+@mixin iPhone_small {
+  @include device(iPhone8plus, portrait) {
+    @content;
+  }
+}
+
+@mixin iPhone_large {
+  @include device(iPhone11pro iPhone14 iPhone14plus iphone14promax, portrait) {
+    @content;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+input {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1;
+}
+
+a,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}

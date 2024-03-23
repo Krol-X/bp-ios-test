@@ -1,0 +1,31 @@
+/* Features style */
+
+.content__features {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  & > .features__item {
+    width: 6.5rem;
+    height: 8.6rem;
+    font-size: 11px;
+    position: relative;
+    /* linear-gradient сверху */
+    background: #d8d8d8
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.0001) 0%,
+        rgba(4, 6, 26, 0.0001) 62.04%,
+        rgba(6, 9, 37, 0.558287) 76.68%,
+        #15072f 100%
+      );
+
+    border-radius: 10px;
+
+    & > .features__item-title {
+      position: absolute;
+      left: 0.4rem;
+      bottom: 0.6rem;
+    }
+  }
+}

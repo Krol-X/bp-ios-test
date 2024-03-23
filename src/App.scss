@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  color: #fff;
+  background: #000;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  padding: 0.75rem 1.5rem;
+  background-image: url('images/bg.png');
+  background-size: cover;
+  @include iPhone_small {
+    background-image: url('images/bg@2x.png');
+  }
+  @include iPhone_large {
+    background-image: url('images/bg@3x.png');
+  }
+  
+  /* stub */
+  /*width: 375px;
+  height: 755px;*/
+}
