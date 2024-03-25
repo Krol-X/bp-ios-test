@@ -6,23 +6,20 @@ import { setupHeader } from '@components/Header'
 import { setupContent } from '@components/Content'
 import { setupFooter } from '@components/Footer'
 
-const setupApp = newComponent(
-  `
+const setupApp = newComponent(`
   <div class='app-container'>
     <div id="header"></div>
     <div id="content"></div>
     <div id="footer"></div>
   </div>
-`,
-  () => {
-    setupHeader('#header')
+`, () => {
+  setupHeader('#header')
 
-    setupContent('#content', {
-      title: _('Get Unlimited <br>Access')
-    })
+  setupContent('#content', {
+    title: _('Get Unlimited <br>Access')
+  })
 
-    setupFooter('#footer')
-  }
-)
+  setupFooter('#footer')
+})
 
 setupApp('#app', {})
