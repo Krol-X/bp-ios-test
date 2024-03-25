@@ -20,9 +20,18 @@ export const setupContent = newComponent(
   () => {
     setupFeatures('.content__features', {
       features: [
-        _('Unlimited Art <br>Creation'),
-        _('Exclusive <br>Styles'),
-        _('Magic Avatars <br>With 20% Off')
+        {
+          title: _('Unlimited Art <br>Creation'),
+          background: 'images/feature1.png'
+        },
+        {
+          title: _('Exclusive <br>Styles'),
+          background: 'images/feature2.png'
+        },
+        {
+          title: _('Magic Avatars <br>With 20% Off'),
+          background: 'images/feature3.png'
+        }
       ]
     })
     setupPlanSelector('.content__plan-selector', {
