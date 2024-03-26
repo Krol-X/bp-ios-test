@@ -1,11 +1,4 @@
 .footer {
-  @include iPhone_small {
-    margin-top: 1.75rem;
-  }
-  @include iPhone_large {
-    margin-top: 2.75rem;
-  }
-
   & > .footer__links {
     display: flex;
     justify-content: space-around;

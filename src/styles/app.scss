@@ -31,6 +31,12 @@ a:visited {
 
 body {
   padding: 0.75rem 1.5rem;
+  @include iPhone_small {
+    padding: 1rem 1.5rem 0.625rem 1.5rem
+  }
+  @include iPhone_large {
+    padding: 1.75rem 1.5rem 2rem 1.5rem
+  }
 
   color: #fff;
   background: #000;
