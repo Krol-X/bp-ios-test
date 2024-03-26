@@ -1,28 +1,38 @@
 import templayed from 'templayed'
 
-export function newComponent(html, update_hook) {
-  return (selector, data = {}, is_inner) => {
-    const element = document.querySelector(selector)
-    if (!element) return null
+import { isString } from './index.js'
+
+export function newComponent(html, tag, classes, after_hook) {
+  return (selector_comp, data = {}, insert_policy) => {
+    let container = selector_comp
+    if (isString(selector_comp)) {
+      container = document.querySelector(selector_comp)
+    }
+    if (!container) return null
+    
+    const element = document.createElement('div')
+    element.classList = classes
+    container.appendChild(element)
 
     const template = templayed(html)
 
-    const update = (data, is_inner) => {
-      if (is_inner) {
-        element.innerHTML = template(data)
+    const update = (data, insert_policy) => {
+      if (insert_policy === 'append') {
+        element.innerHTML += template(data)
       } else {
-        element.outerHTML = template(data)
-      }
-      if (update_hook) {
-        update_hook(element, update)
+        element.innerHTML = template(data)
       }
     }
-    update(data, is_inner)
+    update(data, insert_policy)
+
+    if (after_hook) {
+      after_hook(element, data, update)
+    }
 
     const component_api = {}
 
     component_api.next = (fun) => {
-      fun(element, update)
+      fun(element, data, update)
       return component_api
     }
 
