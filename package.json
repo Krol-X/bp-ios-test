@@ -1,7 +1,7 @@
 {
-  "name": "ios-test",
+  "name": "bp-ios-test",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,18 +9,13 @@
     "preview": "vite preview",
     "lint": "prettier --check .",
     "format": "prettier --write src",
-    "format:watch": "onchange \"src/**/*.js\" \"src/**/*.ts\" \"src/**/*.json\" -- prettier --write {{changed}}",
-    "new:component": "hygen new component"
+    "format:watch": "onchange \"src/**/*.js\" \"src/**/*.ts\" \"src/**/*.json\" -- prettier --write {{changed}}"
   },
   "devDependencies": {
-    "hygen": "^6.2.11",
     "onchange": "^7.1.0",
     "prettier": "^3.2.5",
     "sass": "^1.72.0",
     "sass-mediascreen": "^1.0.4",
     "vite": "^5.2.0"
-  },
-  "dependencies": {
-    "templayed": "^0.2.3"
   }
 }
