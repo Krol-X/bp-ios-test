@@ -81,7 +81,10 @@
   }
   .plan-selector__item {
     padding-left: 1.5rem;
-    padding-right: 4rem;
+    padding-right: 3rem;
+    @include iPhone_large {
+      padding-right: 4rem;
+    }
 
     color: #fff;
     background: rgba(255, 255, 255, 0.1);
@@ -91,6 +94,7 @@
 
     & > .plan-selector__item--side {
       line-height: 1.2rem;
+      width: max-content;
     }
 
     & > .plan-selector__item--title {
@@ -102,9 +106,10 @@
       right: 1.5rem;
       top: -0.625rem;
       min-width: 7.5rem;
-      height: 1.25rem;
+      min-height: 1.25rem;
+      padding: 0.25rem 0.5rem;
 
-      font-size: 0.8rem;
+      font-size: clamp(0.7rem, 3vw, 0.8rem);;
       font-weight: bold;
       color: #000;
       background: #fff;
