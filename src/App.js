@@ -11,14 +11,9 @@ const App = (selector, data) => {
   if (!container) {
     throw new Error(`Unknown container: ${container}`)
   }
-  
+
   function render(container, data) {
-    const {
-      title,
-      features,
-      plans,
-      footer_links
-    } = data
+    const { title, features, plans, footer_links } = data
 
     container.innerHTML += `
       <div class="header">
@@ -30,8 +25,9 @@ const App = (selector, data) => {
           ${title}
         </div>
         <div class="features">
-          ${
-            list(features, feature => `
+          ${list(
+            features,
+            (feature) => `
               <div class="features__item">
                 <img src="${feature.background}" class="features__item-background">
                 <div class="features__item-mask"></div>
@@ -39,41 +35,46 @@ const App = (selector, data) => {
                   ${feature.title}
                 </div>
               </div>
-            `)
-          }
+            `
+          )}
         </div>
         <div class="plan-selector">
           <div class="plan-selector__list">
-            ${
-              list(plans, plan => `
-                <div class="plan-selector__item ${plan.is_best?'plan-selector__item--best': ''}" data-href="${plan.href}">
+            ${list(
+              plans,
+              (plan) => `
+                <div class="plan-selector__item ${plan.is_best ? 'plan-selector__item--best' : ''}" data-href="${plan.href}">
                   <div class="plan-selector__item--side">
                     <div class="plan-selector__item--title">
                       ${plan.title}
                     </div>
                     ${
-                      plan.year_price? `
+                      plan.year_price
+                        ? `
                         <div class="plan-selector__item--year-price">
-                          ${ _('Just {{price}} per year').replace('{{price}}', plan.year_price) }
+                          ${_('Just {{price}} per year').replace('{{price}}', plan.year_price)}
                         </div>
-                      `: ''
+                      `
+                        : ''
                     }
                   </div>
                   <div class="plan-selector__item--side">
                     <div class="plan-selector__item--price">
-                      ${ _('{{price}} <br>per week').replace('{{price}}', plan.price) }
+                      ${_('{{price}} <br>per week').replace('{{price}}', plan.price)}
                     </div>
                   </div>
                   ${
-                    plan.is_best? `
+                    plan.is_best
+                      ? `
                       <div class="plan-selector__item--highlight">
                         ${_('BEST OFFER')}
                       </div>
-                    `: ''
+                    `
+                      : ''
                   }
                 </div>
-              `)
-            }
+              `
+            )}
           </div>
           <a class="plan-selector__button" href="#">
             ${_('Continue')}
@@ -83,42 +84,44 @@ const App = (selector, data) => {
 
       <div class="footer">
         <div class="footer__links">
-          ${
-            list(footer_links, link => `
+          ${list(
+            footer_links,
+            (link) => `
               <a href="${link.href ?? '#'}" class="footer__link">
                 ${link.text}
               </a>
-            `)
-          }
+            `
+          )}
         </div>
       </div>
     `
   }
 
+  function select(item) {
+    // Снимаем все прошлые выделения и подсвечиваем нажатый элемент
+    const old_selected = container.querySelectorAll('.plan-selector__item--selected')
+    old_selected.forEach((_) => _.classList.remove('plan-selector__item--selected'))
+    item.classList.add('plan-selector__item--selected')
+
+    // Меняем ссылку
+    const link_button = container.querySelector('.plan-selector__button')
+    link_button.href = item.dataset.href
+  }
+
   function setupPlanSelector(container) {
     const plan_selector_items = container.querySelectorAll('.plan-selector__item')
-    
-    // Выделяем первый элемент списка
-    plan_selector_items[0].classList.add('plan-selector__item--selected')
-    
+
+    // Выбираем первый элемент списка
+    select(plan_selector_items[0])
+
     // Назначаем элементам списка обработчик события click
-    plan_selector_items.forEach(item => item.addEventListener('click',
-      event => {
-        const selected = event.target.closest('.plan-selector__item')
-
-        // Снимаем все прошлые выделения и подсвечиваем нажатый элемент
-        const old_selected = container.querySelectorAll('.plan-selector__item--selected')
-        old_selected.forEach(_ => _.classList.remove('plan-selector__item--selected'))
-
-        selected.classList.add('plan-selector__item--selected')
-
-        // Меняем ссылку
-        const link_button = container.querySelector('.plan-selector__button')
-        link_button.href = selected.dataset.href
-      }
-    ))
+    plan_selector_items.forEach((item) =>
+      item.addEventListener('click', (event) => {
+        select(event.target.closest('.plan-selector__item'))
+      })
+    )
   }
-  
+
   render(container, data)
   setupPlanSelector(container)
 }
@@ -153,9 +156,5 @@ App('body', {
       price: '$6.99'
     }
   ],
-  footer_links: [
-    { text: _('Terms of Use') },
-    { text: _('Privacy Policy') },
-    { text: _('Restore') }
-  ]
+  footer_links: [{ text: _('Terms of Use') }, { text: _('Privacy Policy') }, { text: _('Restore') }]
 })
