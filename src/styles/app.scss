@@ -40,14 +40,8 @@ body {
 
   color: #fff;
   background: #000;
-  background-image: url('images/bg.png');
+  background-image: url('images/bg@3x.jpg');
   background-size: cover;
-  @include iPhone_small {
-    background-image: url('images/bg@2x.png');
-  }
-  @include iPhone_large {
-    background-image: url('images/bg@3x.png');
-  }
 
   display: flex;
   flex-direction: column;
